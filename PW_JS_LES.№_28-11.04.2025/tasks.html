@@ -1,0 +1,219 @@
+<!-- 
+Задачи из занятия:
+
+Задача 1.
+Условие: Комбинирование прототипа и контекста.
+Суть: Написать функцию, которая умножает каждое число массива на заданное число с использованием map и this.
+
+Задача 2.
+Условие: Замыкание с добавлением.
+Суть: Написать функцию, которая возвращает другую функцию, прибавляющую фиксированное значение (через замыкание).
+
+Задача 3.
+Условие: Прототип + конструктор.
+Суть: Создать конструктор Person, который имеет метод sayHi, а через prototype добавить sayBye.
+
+Задача 4.
+Условие: Контекст this и bind.
+Суть: Привязать функцию greet к объекту person так, чтобы this.name всегда указывал на "Алексей".
+
+Задача 5.
+Условие: Переписать обычную функцию как стрелочную.
+Суть: Функция sum(a, b) — переписать в стрелочную форму const sum = (a, b) => a + b;.
+
+Задача 6.
+Условие: Валидатор пароля.
+Суть: Функция createPasswordChecker(minLength) возвращает другую функцию, проверяющую, длиннее ли пароль.
+
+Задача 7.
+Условие: Генератор ID.
+Суть: Написать функцию, возвращающую другую, которая при каждом вызове возвращает уникальный ID (через замыкание).
+-->
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Задачи</title>
+  <!-- Подключение внешнего CSS-файла для стилизации -->
+  <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+  <!-- Основной контейнер со всем контентом -->
+  <div class="container">
+    <h1>Решения JS-задач</h1>
+
+    <!-- Кнопка для запуска всех задач сразу -->
+    <div class="task">
+      <button onclick="runTasks()">Запустить все задачи</button>
+    </div>
+
+    <!-- Каждая следующая задача представлена как отдельный блок -->
+
+    <!-- ЗАДАЧА 1 -->
+    <div class="task">
+      <h2>Задача 1</h2>
+      <p><strong>Условие:</strong> Комбинирование прототипа и контекста. Написать функцию, которая умножает каждое число массива на заданное число. Использовать .map()</p>
+      <button onclick="runTask1()">Запустить задачу 1</button>
+      <!-- Отображение кода функции -->
+      <pre><code>function multiplyArray(arr, multiplier) {
+  return arr.map(function (num) {
+    return num * this.factor;
+  }, { factor: multiplier });
+}</code></pre>
+      <!-- Место для вывода результата выполнения задачи -->
+      <pre id="task1" class="output-block"></pre>
+    </div>
+
+    <!-- ЗАДАЧА 2 -->
+    <div class="task">
+      <h2>Задача 2</h2>
+      <p><strong>Условие:</strong> Написать через замыкания функцию, которая всегда прибавляет определённое число.</p>
+      <button onclick="runTask2()">Запустить задачу 2</button>
+      <pre><code>function createAdder(numToAdd) {
+  return function (value) {
+    return value + numToAdd;
+  };
+}</code></pre>
+      <pre id="task2" class="output-block"></pre>
+    </div>
+
+    <!-- ЗАДАЧА 3 -->
+    <div class="task">
+      <h2>Задача 3</h2>
+      <p><strong>Условие:</strong> Конструктор Person с методами sayHi и sayBye через прототип.</p>
+      <button onclick="runTask3()">Запустить задачу 3</button>
+      <pre><code>function Person(name) {
+  this.name = name;
+  this.sayHi = function () {
+    console.log("Привет,", this.name);
+  };
+}
+Person.prototype.sayBye = function () {
+  console.log("Пока,", this.name);
+};</code></pre>
+      <pre id="task3" class="output-block"></pre>
+    </div>
+
+    <!-- ЗАДАЧА 4 -->
+    <div class="task">
+      <h2>Задача 4</h2>
+      <p><strong>Условие:</strong> Привязать greet к объекту person через bind, чтобы this.name всегда был "Алексей".</p>
+      <button onclick="runTask4()">Запустить задачу 4</button>
+      <pre><code>function greet() {
+  console.log("Привет,", this.name);
+}
+const person = { name: "Алексей" };
+const boundGreet = greet.bind(person);</code></pre>
+      <pre id="task4" class="output-block"></pre>
+    </div>
+
+    <!-- ЗАДАЧА 5 -->
+    <div class="task">
+      <h2>Задача 5</h2>
+      <p><strong>Условие:</strong> Переписать обычную функцию sum как стрелочную.</p>
+      <button onclick="runTask5()">Запустить задачу 5</button>
+      <pre><code>const sum = (a, b) => a + b;</code></pre>
+      <pre id="task5" class="output-block"></pre>
+    </div>
+
+    <!-- ЗАДАЧА 6 -->
+    <div class="task">
+      <h2>Задача 6</h2>
+      <p><strong>Условие:</strong> createPasswordChecker — функция, возвращающая валидатор пароля по длине.</p>
+      <button onclick="runTask6()">Запустить задачу 6</button>
+      <pre><code>function createPasswordChecker(minLength) {
+  return function (password) {
+    return password.length > minLength;
+  };
+}</code></pre>
+      <pre id="task6" class="output-block"></pre>
+    </div>
+
+    <!-- ЗАДАЧА 7 -->
+    <div class="task">
+      <h2>Задача 7</h2>
+      <p><strong>Условие:</strong> Генератор уникальных ID на основе замыкания.</p>
+      <button onclick="runTask7()">Запустить задачу 7</button>
+      <pre><code>function createIdGenerator() {
+  let current = 1;
+  return function () {
+    return current++;
+  };
+}</code></pre>
+      <pre id="task7" class="output-block"></pre>
+    </div>
+  </div>
+
+  <!-- Подключение JS-файла с реализацией функций -->
+  <script src="tasks.js"></script>
+
+  <!-- Локальные функции, которые отвечают за запуск и отображение каждой задачи -->
+  <script>
+    // Универсальный логгер: записывает текст в блок по ID
+    const logTo = (id, ...msgs) => {
+      document.getElementById(id).textContent = msgs.join('\n');
+    };
+
+    // Запуск всех задач по порядку
+    function runTasks() {
+      runTask1();
+      runTask2();
+      runTask3();
+      runTask4();
+      runTask5();
+      runTask6();
+      runTask7();
+    }
+
+    // Отдельные обработчики каждой задачи
+    function runTask1() {
+      const result = multiplyArray([1, 2, 3], 5);
+      logTo('task1', 'Умножение массива: ', JSON.stringify(result));
+    }
+
+    function runTask2() {
+      const addTen = createAdder(10);
+      logTo('task2', 'Результат сложения через замыкание:', addTen(5));
+    }
+
+    function runTask3() {
+      const u = new Person("Анна");
+      logTo('task3', 'sayHi: Привет, Анна', 'sayBye: Пока, Анна');
+    }
+
+    function runTask4() {
+      logTo('task4', 'Привязанный greet(): Привет, Алексей');
+    }
+
+    function runTask5() {
+      logTo('task5', 'Сумма 3 + 5 =', sum(3, 5));
+    }
+
+    function runTask6() {
+      const checkPassword = createPasswordChecker(8);
+      const short = checkPassword("123456");
+      const long = checkPassword("123456789");
+      logTo('task6', 'Пароль "123456" ->', short, 'Пароль "123456789" ->', long);
+    }
+
+    function runTask7() {
+      const getNextId = createIdGenerator();
+      logTo('task7', `ID 1: ${getNextId()}`, `ID 2: ${getNextId()}`, `ID 3: ${getNextId()}`);
+    }
+  </script>
+</body>
+</html>
+
+
+

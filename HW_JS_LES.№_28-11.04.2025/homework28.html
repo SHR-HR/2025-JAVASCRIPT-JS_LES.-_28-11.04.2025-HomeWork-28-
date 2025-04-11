@@ -1,0 +1,94 @@
+<!-- 
+Домашнее задание.
+
+Курс: Разработка интерфейса на JavaScript.
+Дисциплина: Основы JavaScript.
+
+Домашнее задание №28: Прототипы. Контекст. Виды функций. Замыкания.
+
+Решите данные задачи.
+1. Создайте объект с несколькими ключами и попытайтесь вызвать у него функцию, 
+которой нет у этого объекта, которая посчитает количество букв в строке.
+
+2. Комбинирования прототипа и контекста. 
+Написать функцию, которая возведёт переменную (число) в степень.
+
+3. Написать функции через замыкания, которая выводит полный URL путь к сайту.
+ `http://${url}.${domain}` Внешняя функция принимает domain, а внутренняя URL. 
+-->
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Домашнее задание №28 — Прототипы. Контекст. Виды функций. Замыкания.</title>
+
+  <!-- Подключаем стили -->
+  <link rel="stylesheet" href="homework28.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Домашнее задание №28</h1>
+    <p class="subtitle">Прототипы. Контекст. Виды функций. Замыкания.</p>
+
+    <!-- Кнопка запуска всех задач -->
+    <button onclick="runAllTasks()">▶ Запустить все задачи</button>
+
+    <!-- Задача 1 -->
+    <section class="task">
+      <h2>Задача 1</h2>
+      <p><strong>Условие:</strong> Создайте объект и вызовите у его строки метод countLetters(), добавленный в прототип String.</p>
+      <pre id="task1-output" class="output"></pre>
+    </section>
+
+    <!-- Задача 2 -->
+    <section class="task">
+      <h2>Задача 2</h2>
+      <p><strong>Условие:</strong> Используйте прототип и контекст для возведения числа в степень.</p>
+      <pre id="task2-output" class="output"></pre>
+    </section>
+
+    <!-- Задача 3 -->
+    <section class="task">
+      <h2>Задача 3</h2>
+      <p><strong>Условие:</strong> Создайте функцию через замыкание, формирующую URL по шаблону <code>http://${url}.${domain}</code>.</p>
+      <pre id="task3-output" class="output"></pre>
+    </section>
+  </div>
+
+  <!-- Подключаем JS-реализацию -->
+  <script src="homework28.js"></script>
+
+  <!-- Скрипт запуска задач и вывода результата -->
+  <script>
+    function runAllTasks() {
+      // 1. Задача с countLetters
+      const result1a = myObject.name.countLetters();
+      const result1b = myObject.course.countLetters();
+      document.getElementById("task1-output").textContent =
+        `"${myObject.name}" → ${result1a} букв\n"${myObject.course}" → ${result1b} букв`;
+
+      // 2. Задача с контекстом и степенью
+      const result2 = calc.power(4);
+      document.getElementById("task2-output").textContent = `3^4 = ${result2}`;
+
+      // 3. Задача с замыканиями и URL
+      const url1 = makeComUrl("google");
+      const url2 = makeOrgUrl("wikipedia");
+      document.getElementById("task3-output").textContent = `${url1}\n${url2}`;
+    }
+  </script>
+</body>
+</html>
+
+
